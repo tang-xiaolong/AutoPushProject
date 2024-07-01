@@ -6,18 +6,15 @@ from flask import Flask, request, jsonify
 from threading import Thread, Lock
 from datetime import datetime, timedelta
 
-# 配置信息
-commit_message = 'Auto commit changes'  # 提交信息
-heartbeat_interval = 300  # 心跳间隔，单位为秒
-heartbeat_threshold = 600  # 超过这个时间未收到心跳包就不提交该目录，单位为秒
-data_file = 'registered_dirs.json'  # 存储注册目录信息的文件
+# 加载配置文件
+with open('config.json', 'r') as f:
+    config = json.load(f)
 
-# 提交时间点
-commit_times = [
-    {'hour': 8, 'minute': 0},
-    {'hour': 13, 'minute': 0},
-    {'hour': 23, 'minute': 59}
-]
+commit_message = config['commit_message']
+heartbeat_interval = config['heartbeat_interval']
+heartbeat_threshold = config['heartbeat_threshold']
+commit_times = config['commit_times']
+data_file = config['data_file']
 
 # 存储注册的目录及其最后心跳时间
 registered_dirs = {}
@@ -117,6 +114,3 @@ if __name__ == '__main__':
 
     # 启动Flask服务器
     app.run(port=5000)
-
-
-

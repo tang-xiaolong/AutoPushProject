@@ -1,0 +1,12 @@
+{
+    "commit_message": "Auto commit changes",
+    "heartbeat_interval": 300,
+    "heartbeat_threshold": 600,
+    "commit_times": [
+        {"hour": 8, "minute": 0},
+        {"hour": 13, "minute": 0},
+        {"hour": 18, "minute": 0},
+        {"hour": 23, "minute": 59}
+    ],
+    "data_file": "registered_dirs.json"
+}
